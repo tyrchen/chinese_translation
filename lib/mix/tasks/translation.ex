@@ -14,9 +14,12 @@ defmodule Mix.Tasks.ChineseTranslation do
 
   def run(_args) do
     HTTPoison.start
+    IO.puts "Downloading from #{@url}..."
     %HTTPoison.Response{body: body} = HTTPoison.get! @url
+    IO.puts "Cleaning #{@beam_path}..."
     File.rm_rf(@beam_path)
     write_file(body)
+    IO.puts "Recompiling chinese_translation..."
     System.cmd("mix", ["compile"])
   end
 
