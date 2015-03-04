@@ -22,7 +22,8 @@ defmodule ChineseTranslation do
     end
   end
 
-  ChineseTranslation.Util.get_trans_data["zh2Hant"]
+  ChineseTranslation.Util.get_trans_data
+  |> Dict.get("zh2Hant", [])
   |> Enum.map(fn({simp, trad}) -> 
     defp do_t2s(unquote(trad) <> rest) do
       unquote(:binary.bin_to_list(simp)) ++ do_t2s(rest)

@@ -3,18 +3,25 @@ defmodule ChineseTranslation.Util do
   Utility functions to read data/conversion.txt file and parse it to a hash dict.
   """
 
-  @filename "data/conversion.txt"
+  @filename "conversion.txt"
   @php_regex ~r/\$(?<name>\S+).*\((?<content>[^\)]+)\)/
   @php_kv ~r/'(?<key>[^']+)'\s*=>\s*'(?<value>[^']+)'/
 
   def get_trans_data do
     @filename
-    |> File.read!
+    |> get_file_content
     |> match
     |> Enum.map(fn([_whole, name, content]) -> 
       {name, parse(content)}
     end)
     |> Enum.into(%{})
+  end
+
+  defp get_file_content(filename) do
+    case File.read(filename) do
+      {:error, _} -> ""
+      {:ok, content} -> content
+    end
   end
 
   defp match(content) do

@@ -23,10 +23,10 @@ Then you shall be able to run the mix task to download the latest translation fi
 $ mix chinese_translation
 ```
 
-The downloaded file will be put into `data/conversion.txt`. You can then compile it:
+The downloaded file will be put into `data/conversion.txt`. You can then re-compile it:
 
 ```bash
-$ mix compile
+$ mix clean; mix compile
 ```
 
 Wait for a while (takes up to a minute since around ~10,000 functions are generated at compilation time), you're then good to go!
