@@ -10,11 +10,14 @@ defmodule Mix.Tasks.ChineseTranslation do
   @url "http://svn.wikimedia.org/svnroot/mediawiki/trunk/phase3/includes/ZhConversion.php"
   @path1 "conversion.txt"
   @path2 "deps/chinese_translation/conversion.txt"
+  @beam_path "_build/dev/lib/chinese_translation"
 
   def run(_args) do
     HTTPoison.start
     %HTTPoison.Response{body: body} = HTTPoison.get! @url
+    File.rm_rf(@beam_path)
     write_file(body)
+    System.cmd("mix", ["compile"])
   end
 
   def write_file(body) do

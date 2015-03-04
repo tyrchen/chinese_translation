@@ -15,7 +15,7 @@ def deps do
 end
 ```
 
-and run `$ mix deps.get`.
+and run `$ mix deps.get; mix compile`.
 
 Then you shall be able to run the mix task to download the latest translation file:
 
@@ -23,13 +23,9 @@ Then you shall be able to run the mix task to download the latest translation fi
 $ mix chinese_translation
 ```
 
-The downloaded file will be put into `data/conversion.txt`. You can then re-compile it:
+The downloaded file will be put into `deps/chinese_translation/conversion.txt` and the whole module will be recompiled.
 
-```bash
-$ mix clean; mix compile
-```
-
-Wait for a while (takes up to a minute since around ~10,000 functions are generated at compilation time), you're then good to go!
+Note that the first compilation and each `mix chinese_translation` are quite time consuming (it takes up to a minute since around ~10,000 functions are generated at compilation time), so be patient!
 
 ## Usage
 
