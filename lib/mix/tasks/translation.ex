@@ -8,7 +8,7 @@ defmodule Mix.Tasks.ChineseTranslation do
   """
 
   @url "http://svn.wikimedia.org/svnroot/mediawiki/trunk/phase3/includes/ZhConversion.php"
-  @path "data/conversion.txt"
+  @path "conversion.txt"
   def run(_args) do
     HTTPoison.start
     %HTTPoison.Response{body: body} = HTTPoison.get! @url
