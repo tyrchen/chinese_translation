@@ -18,7 +18,7 @@ defmodule ChineseTranslation.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.6", only: [:dev, :test]},
+      {:httpoison, "~> 0.6"},
     ]
   end
 end
