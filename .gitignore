@@ -1,0 +1,8 @@
+/_build
+/deps
+erl_crash.dump
+*.ez
+bench/graphs
+bench/snapshots
+*.beam
+*.lock
