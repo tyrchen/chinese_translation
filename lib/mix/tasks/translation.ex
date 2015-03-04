@@ -8,10 +8,20 @@ defmodule Mix.Tasks.ChineseTranslation do
   """
 
   @url "http://svn.wikimedia.org/svnroot/mediawiki/trunk/phase3/includes/ZhConversion.php"
-  @path "conversion.txt"
+  @path1 "conversion.txt"
+  @path2 "deps/chinese_translation/conversion.txt"
+
   def run(_args) do
     HTTPoison.start
     %HTTPoison.Response{body: body} = HTTPoison.get! @url
-    File.write! @path, body
+    write_file(body)
+  end
+
+  def write_file(body) do
+    case File.exists? @path2 do
+      true -> @path2
+      _    -> @path1
+    end
+    |> File.write(body)
   end
 end
