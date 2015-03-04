@@ -6,4 +6,3 @@ bench/graphs
 bench/snapshots
 *.beam
 *.lock
-conversion.txt
