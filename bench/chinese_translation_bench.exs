@@ -20,4 +20,22 @@ defmodule ChineseTranslationBench do
   bench "translate a 158-character sentence t->s" do
     ChineseTranslation.translate(@trad)
   end
+
+  bench "translate 158-character chinese to pinyin" do
+    ChineseTranslation.pinyin(@simp)
+  end
+
+  @pinyin ChineseTranslation.pinyin("长大以后变成长工")
+  bench "slugify pinyin" do
+    ChineseTranslation.slugify(@pinyin, [:pinyin])
+  end
+
+  bench "slugify pinyin with tone" do
+    ChineseTranslation.slugify(@pinyin, [:pinyin, :tone])
+  end
+
+
+  bench "slugify a short sentence" do
+    ChineseTranslation.slugify("长大以后变成长工")
+  end
 end
