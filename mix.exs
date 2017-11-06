@@ -42,7 +42,7 @@ defmodule ChineseTranslation.Mixfile do
 
   defp package do
     [
-      files: ["lib", "data", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      files: ["lib", "data", "mix.exs", "README*", "LICENSE*"],
       contributors: ["Tyr Chen"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/tyrchen/chinese_translation"}
