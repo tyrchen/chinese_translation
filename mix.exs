@@ -1,10 +1,12 @@
 defmodule ChineseTranslation.Mixfile do
   use Mix.Project
 
+  @version File.cwd!() |> Path.join("version") |> File.read!() |> String.trim()
+
   def project do
     [
       app: :chinese_translation,
-      version: "0.2.0",
+      version: @version,
       elixir: "~> 1.5",
       description: description(),
       package: package(),
