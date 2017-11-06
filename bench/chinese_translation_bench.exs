@@ -34,7 +34,6 @@ defmodule ChineseTranslationBench do
     ChineseTranslation.slugify(@pinyin, [:pinyin, :tone])
   end
 
-
   bench "slugify a short sentence" do
     ChineseTranslation.slugify("长大以后变成长工")
   end

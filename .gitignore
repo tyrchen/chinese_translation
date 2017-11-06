@@ -6,3 +6,5 @@ bench/graphs
 bench/snapshots
 *.beam
 *.lock
+.tool-versions
+doc
