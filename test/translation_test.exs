@@ -11,11 +11,11 @@ defmodule ChineseTranslationTest.Translation do
   end
 
   test "can translate words t->s" do
-     assert ChineseTranslation.translate("幹線") == "干线"
+    assert ChineseTranslation.translate("幹線") == "干线"
   end
 
   test "can translate words s->t" do
-     assert ChineseTranslation.translate("干线", :s2t) == "幹線"
+    assert ChineseTranslation.translate("干线", :s2t) == "幹線"
   end
 
   test "can do maximum translation t->s" do
