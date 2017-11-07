@@ -3,13 +3,14 @@ defmodule ChineseTranslation.Translation.Util do
   Utility functions to read s2t_conversion.txt file and parse it into a list
   ordered by the length of the words.
   """
+  alias ChineseTranslation.Utils
 
-  @filename Path.join([__DIR__, "..", "..", "data", "s2t_conversion.txt"])
   @php_regex ~r/\$(?<name>\S+).*\((?<content>[^\)]+)\)/
   @php_kv ~r/'(?<key>[^']+)'\s*=>\s*'(?<value>[^']+)'/
 
   def get_trans_data do
-    @filename
+    Utils.data_path()
+    |> Path.join("s2t_conversion.txt")
     |> get_file_content
     |> match
     |> Enum.map(fn [_whole, name, content] ->
