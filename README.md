@@ -15,7 +15,7 @@ First, add ChineseTranslation to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
-  [{:chinese_translation, github: "tyrchen/chinese_translation"}]
+  [{:chinese_translation, "~> 0.2.0"}]
 end
 ```
 
@@ -61,7 +61,7 @@ iex> ChineseTranslation.pinyin("長工長大以後", :trad)
 
 ### Slugify (also the polyphone)
 
-For slugify you could choose to use 
+For slugify you could choose to use
 
 ```iex
 iex> ChineseTranslation.slugify("长工长大以后")
