@@ -10,18 +10,25 @@ defmodule ChineseTranslation.Mixfile do
       elixir: "~> 1.5",
       description: description(),
       package: package(),
-      deps: deps()
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+
+      # exdocs
+      # Docs
+      name: "ChineseTranslation",
+      source_url: "https://github.com/tyrchen/chinese_translation",
+      homepage_url: "https://github.com/tyrchen/chinese_translation",
+      docs: [
+        main: "ChineseTranslation",
+        extras: ["README.md"]
+      ]
     ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :httpoison]]
+    [extra_applications: [:logger]]
   end
 
-  # Type `mix help deps` for more examples and options
   defp deps do
     [
       {:httpoison, "~> 0.13"},
@@ -42,10 +49,13 @@ defmodule ChineseTranslation.Mixfile do
 
   defp package do
     [
-      files: ["lib", "data", "mix.exs", "README*", "LICENSE*"],
-      contributors: ["Tyr Chen"],
+      files: ["lib", "priv", "mix.exs", "README*", "LICENSE*", "version"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/tyrchen/chinese_translation"}
+      maintainers: ["tyr.chen@gmail.com"],
+      links: %{
+        "GitHub" => "https://github.com/tyrchen/chinese_translation",
+        "Docs" => "https://hexdocs.pm/chinese_translation"
+      }
     ]
   end
 end

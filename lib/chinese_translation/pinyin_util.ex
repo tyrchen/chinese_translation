@@ -3,9 +3,8 @@ defmodule ChineseTranslation.Pinyin.Util do
   Utility functions to read pinyin_characters.txt / pinyin_words.txt and parse
   it into a list ordered by the length of the words.
   """
-  alias ChineseTranslation.Iterable
+  alias ChineseTranslation.{Iterable, Utils}
 
-  @path Path.join([__DIR__, "..", "..", "data"])
   # the order is very important here
   @files ["pinyin_characters.txt", "pinyin_words.txt"]
   @tone_file "pinyin_tone.txt"
@@ -51,7 +50,7 @@ defmodule ChineseTranslation.Pinyin.Util do
   end
 
   defp get_file_stream(filename) do
-    @path
+    Utils.data_path()
     |> Path.join(filename)
     |> File.stream!()
   end

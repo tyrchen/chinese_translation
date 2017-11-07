@@ -3,6 +3,7 @@ defmodule Mix.Tasks.ChineseTranslation do
   The task for loading latest data from wikipedia.
   """
   use Mix.Task
+  alias ChineseTranslation.Utils
 
   @shortdoc "get the latest version of the translation table and recompile myself"
 
@@ -21,15 +22,9 @@ defmodule Mix.Tasks.ChineseTranslation do
     }
   ]
 
-  @name "chinese_translation"
-  @mod_path "data"
-  @dep_path "deps/#{@name}/#{@mod_path}"
-  @beam_path "_build/dev/lib/#{@name}"
-
   def run(_args) do
     HTTPoison.start()
     get_data_file(@urls)
-    clean_beam(@beam_path)
     recompile()
   end
 
@@ -40,13 +35,9 @@ defmodule Mix.Tasks.ChineseTranslation do
     |> Enum.to_list()
   end
 
-  defp clean_beam(beam_path) do
-    IO.puts("Cleaning #{beam_path}...")
-    File.rm_rf(beam_path)
-  end
-
   defp recompile do
     IO.puts("Recompiling chinese_translation...")
+    System.cmd("mix", ["clean"])
     System.cmd("mix", ["compile"])
   end
 
@@ -57,11 +48,7 @@ defmodule Mix.Tasks.ChineseTranslation do
   end
 
   def write_file({filename, body}) do
-    path = case File.exists?(@dep_path) do
-      true -> Path.join(@dep_path, filename)
-      _ -> Path.join(@mod_path, filename)
-    end
-
+    path = Path.join(Utils.data_path(), filename)
     File.write(path, body)
   end
 end
